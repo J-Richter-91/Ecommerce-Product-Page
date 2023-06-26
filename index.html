@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ecommerce Product Page</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="styles.css"> 
+    </head>
+    <body>
+
+        <header>
+            <nav class="nav-container">
+                
+                <ul class="nav-list">
+                    <div class="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <ul class="mobile-dropdown">
+                            <li ><a href="#">Collections</a></li>
+                            <li ><a href="#">Men</a></li>
+                            <li ><a href="#">Women</a></li>
+                            <li ><a href="#">About</a></li>
+                            <li ><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    <img src="assets/logo.svg" alt="logo">
+                    <li class="nav-links"><a href="#">Collections</a></li>
+                    <li class="nav-links"><a href="#">Men</a></li>
+                    <li class="nav-links"><a href="#">Women</a></li>
+                    <li class="nav-links"><a href="#">About</a></li>
+                    <li class="nav-links"><a href="#">Contact</a></li>
+                    
+                <div class="dropdown-list">
+                    <li class="dropdown"><a href="#"><img src="assets/icon-cart.svg"></a>
+                        <ul  class="dropdown-wrapper">
+                            <li>
+                                <div class="cart-dropdown-content">
+                                    <h3>Cart</h3>
+                                    <div class="cart-info-container">
+                                        <img class="cart-img"  src="assets/image-product-1-thumbnail.jpg">
+                                        <div class="price-container">
+                                        <p class="product-name">Cart is empty</p>
+                                        <p class="total-price"></p>
+                                        
+                                        </div>
+                                        <div><img class="delete-icon" src="assets/icon-delete.svg"></div>
+                                    </div>
+                                    <div class="checkout-btn-container">
+                                    <button class="checkout-btn">Checkout</button>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#"><img class="avatar" src="assets/image-avatar.png"></a>
+                       
+                    </li>
+                </div>
+                </ul><!--Nav-container end-->
+              
+                
+            
+           
+            </nav>
+        </header>
+            <main class="main-content-container">
+                <!--Image Gallery-->
+                <div class="gallery-container">
+                    <img id="main-img" src="assets/image-product-1.jpg" alt="main-img">
+                        <div class="thumbnail-gallery">
+                            <img class="thumbnail-imgs" src="assets/image-product-1-thumbnail.jpg" data-imgsrc="assets/image-product-1.jpg" alt="thumbnail">
+                            <img class="thumbnail-imgs" src="assets/image-product-2-thumbnail.jpg" data-imgsrc="assets/image-product-2.jpg"  alt="thumbnail">
+                            <img class="thumbnail-imgs" src="assets/image-product-3-thumbnail.jpg" data-imgsrc="assets/image-product-3.jpg"  alt="thumbnail">
+                            <img class="thumbnail-imgs" src="assets/image-product-4-thumbnail.jpg" data-imgsrc="assets/image-product-4.jpg"  alt="thumbnail">
+                        </div><!--Thumbnail gallery end-->
+                </div><!--Gallery container end-->
+
+                <div class="lightbox-container">
+                    <div class="lightbox-img-wrapper">
+                        <button class="lightbox-btn" id="left">
+                            <img src="assets/icon-previous.svg">
+                        </button>
+                        <img class="lightbox-img" src="assets/image-product-1.jpg">
+                        <button class="lightbox-btn" id="right">
+                            <img src="assets/icon-next.svg">
+                        </button>
+                        
+                            <img src="assets/icon-close.svg" id="close">
+                        
+                        <div class="thumbnail-gallery" >
+                            <img class="thumbnail-lightbox-imgs" src="assets/image-product-1-thumbnail.jpg" data-imgsrc="assets/image-product-1.jpg" alt="thumbnail">
+                            <img class="thumbnail-lightbox-imgs" src="assets/image-product-2-thumbnail.jpg" data-imgsrc="assets/image-product-2.jpg"  alt="thumbnail">
+                            <img class="thumbnail-lightbox-imgs" src="assets/image-product-3-thumbnail.jpg" data-imgsrc="assets/image-product-3.jpg"  alt="thumbnail">
+                            <img class="thumbnail-lightbox-imgs" src="assets/image-product-4-thumbnail.jpg" data-imgsrc="assets/image-product-4.jpg"  alt="thumbnail">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-info-container">
+                    <h4>Sneaker Company</h4>
+                    <h2>Fall Limited Edition Sneakers</h2>
+                    <p class="product-description">These low-profile sneakers are your perfect casual wear companion. 
+                        Featuring a durable rubber outer sole, they'll withstand everything 
+                        the weather can offer.
+                    </p>
+                        <div class="price-info">
+                            <p class="price">$125.00</p>
+                            <p class="discount">50%</p>
+                        </div>
+                    <p class="previous-price">250$</p>
+                 
+                    <div class="cart-items-container">
+                        <div class="cart-items">
+                            <a class="minus-btn"><img src="assets/icon-minus.svg"></a>
+                            <span class="number-of-items">0</span>
+                            <a class="add-btn"><img src="assets/icon-plus.svg"></a>
+                        </div>
+                        <div class="button-container">
+                            <button class="cart-btn"><img class="cart-icon" src="assets/icon-cart.svg" width="15px"><span>add to cart</span></button>
+                       </div>
+                      </div>
+                      
+                </div>
+                <!--Lightbox-->
+            </main>
+        
+
+        <script src="script.js"></script>
+    </body>
+</html>
