@@ -1,17 +1,17 @@
 //Query Selectors
 
 //Main page gallery variables
-let mainImg = document.querySelector("#main-img");
-let thumbnailImgs = document.querySelectorAll(".thumbnail-imgs");
+const mainImg = document.querySelector("#main-img");
+const thumbnailImgs = document.querySelectorAll(".thumbnail-imgs");
 
 //lightbox variables
-let lightboxContainer = document.querySelector(".lightbox-container");
-let lightboxMainImg = document.querySelector(".lightbox-img");
-let lightboxBtns = document.querySelectorAll(".lightbox-btn");
+const lightboxContainer = document.querySelector(".lightbox-container");
+const lightboxMainImg = document.querySelector(".lightbox-img");
+const lightboxBtns = document.querySelectorAll(".lightbox-btn");
 
 //Lightbox variables for cycling through images
-let lightboxThumbnailImgs = document.querySelectorAll('.thumbnail-lightbox-imgs');
-let lightboxArray = Array.from(lightboxThumbnailImgs);
+const lightboxThumbnailImgs = document.querySelectorAll('.thumbnail-lightbox-imgs');
+const lightboxArray = Array.from(lightboxThumbnailImgs);
 const lastImage = lightboxArray.length -1;
 let activeImg;
 const closeBtn = document.querySelector("#close");
@@ -19,8 +19,8 @@ const nextBtn = document.querySelector("#right");
 const previousBtn = document.querySelector('#left');
 
 //cart variables
-let minus = document.querySelector(".minus-btn");
-let add = document.querySelector(".add-btn");
+const minus = document.querySelector(".minus-btn");
+const add = document.querySelector(".add-btn");
 let total = document.querySelector(".number-of-items");
 let count = "0";
 
@@ -28,7 +28,7 @@ let cartQty = document.querySelector(".number-of-items");
 const price = 125.00;
 const addToCartBtn = document.querySelector(".cart-btn");
 let totalPrice = document.querySelector(".total-price");
-let productName = document.querySelector(".product-name");
+const productName = document.querySelector(".product-name");
 const cartImg = document.querySelector(".cart-img");
 const deleteIcon = document.querySelector(".delete-icon");
 
@@ -88,19 +88,19 @@ deleteIcon.addEventListener("click" , () => {resetCart()});
 //Functions
 
 //open and close lightbox
-const openLightbox = () => {lightboxContainer.classList.add('active')};
-const closeLightbox = () => {lightboxContainer.classList.remove('active');}
+function openLightbox() {lightboxContainer.classList.add('active')};
+function closeLightbox () {lightboxContainer.classList.remove('active');}
 
 //cycle through images
-const nextImg = () => {
+function nextImg() {
     if (activeImg < lastImage) {
-      setActiveImg(lightboxArray[activeImg + 1]);
+      setActiveImg(lightboxArray[activeImg +1]);
     } else {
       setActiveImg(lightboxArray[0]);
     }
   };
 
-const previousImg = () => {
+function previousImg() {
     if (activeImg > 0){
         setActiveImg(lightboxArray[activeImg -1]);
     } else {
@@ -115,7 +115,7 @@ const previousImg = () => {
 /*Updates the active img by updating the src of the mainimg, also this updates 
 the activeImg variable to reflect the index of the img in the lightboxArray vaariable.
 This function will be called when cycling through images using the next and previous buttons*/
-const setActiveImg = (image) => {
+function setActiveImg(image) {
     lightboxMainImg.src = image.dataset.imgsrc;
     activeImg = lightboxArray.indexOf(image);
 }
@@ -140,7 +140,7 @@ lightboxThumbnailImgs.forEach((image) => {
 //Function for adding items to cart
 
 //Calculate total price for cart
-const totalPriceCalculation = () => {
+function totalPriceCalculation () {
     const quantity = count;
     const totalCalc = quantity * price;
     totalPrice.textContent = "$125 x " + quantity + " $" + totalCalc;
@@ -153,11 +153,9 @@ const totalPriceCalculation = () => {
 
 
 //Reset Cart Function
-const resetCart = () => {
+function resetCart() {
     totalPrice.textContent = "";
     productName.textContent = "Cart is empty";
     cartImg.classList.remove("active");
     deleteIcon.classList.remove("active");
 }
-
-
