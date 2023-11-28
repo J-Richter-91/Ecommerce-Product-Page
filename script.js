@@ -1,34 +1,36 @@
 //Query Selectors
 
 //Main page gallery variables
-const mainImg = document.querySelector("#main-img");
-const thumbnailImgs = document.querySelectorAll(".thumbnail-imgs");
+let mainImg = document.querySelector("#main-img");
+let thumbnailImgs = document.querySelectorAll(".thumbnail-imgs");
 
 //lightbox variables
-const lightboxContainer = document.querySelector(".lightbox-container");
-const lightboxMainImg = document.querySelector(".lightbox-img");
-const lightboxBtns = document.querySelectorAll(".lightbox-btn");
+let lightboxContainer = document.querySelector(".lightbox-container");
+let lightboxMainImg = document.querySelector(".lightbox-img");
+let lightboxBtns = document.querySelectorAll(".lightbox-btn");
 
 //Lightbox variables for cycling through images
-const lightboxThumbnailImgs = document.querySelectorAll('.thumbnail-lightbox-imgs');
-const lightboxArray = Array.from(lightboxThumbnailImgs);
+let lightboxThumbnailImgs = document.querySelectorAll('.thumbnail-lightbox-imgs');
+let lightboxArray = Array.from(lightboxThumbnailImgs);
 const lastImage = lightboxArray.length -1;
-let activeImg;
+
+let activeImg = 0;
 const closeBtn = document.querySelector("#close");
 const nextBtn = document.querySelector("#right");
 const previousBtn = document.querySelector('#left');
 
 //cart variables
-const minus = document.querySelector(".minus-btn");
-const add = document.querySelector(".add-btn");
+let minus = document.querySelector(".minus-btn");
+let add = document.querySelector(".add-btn");
 let total = document.querySelector(".number-of-items");
-let count = "0";
+let count = "1";
 
+const cartContainer = document.querySelector(".cart-info-container")
 let cartQty = document.querySelector(".number-of-items");
 const price = 125.00;
 const addToCartBtn = document.querySelector(".cart-btn");
 let totalPrice = document.querySelector(".total-price");
-const productName = document.querySelector(".product-name");
+let productName = document.querySelector(".product-name");
 const cartImg = document.querySelector(".cart-img");
 const deleteIcon = document.querySelector(".delete-icon");
 
@@ -48,114 +50,126 @@ hamburger.addEventListener("click", () => {
     mobileDropdown.classList.toggle("active");
 })
 
-//input for adding product to cart
-minus.addEventListener("click", () =>{
-    if(count > 0){
-    count --;
-    total.textContent = count;
-}
-});
-
-add.addEventListener("click", () =>{
-    count ++;
-    total.textContent = count;
+dropdownIcons.forEach(icon => {
+    icon.addEventListener("click", () => {
+        dropdownContent.classList.toggle("active")
+    })
 })
 
-//Activates dropdown content
-dropdownIcons.forEach((icon) => {
-    icon.addEventListener('click', () => {
-        dropdownContent.classList.toggle('active')
-    });
-});
+add.addEventListener("click", () => {
+    count ++
+    total.textContent = count
+    console.log(count)
+})
 
+minus.addEventListener("click", () => {
+    if(count > 0){
+        count --
+        total.textContent = count
+    } 
+})
 
-
-//This will call the function responsible for adding the total
-addToCartBtn.addEventListener('click', () => {totalPriceCalculation()});
-
-
-/*Next and previous btn event listeners for lightbox*/
-nextBtn.addEventListener('click', () => {nextImg()});
-previousBtn.addEventListener('click', () =>{previousImg()});
-
-/*Open and close event listeners for lightbox*/
-mainImg.addEventListener('click', () => {openLightbox()});
-closeBtn.addEventListener('click', () => {closeLightbox()});
-
-//Reset Cart
-deleteIcon.addEventListener("click" , () => {resetCart()});
-
-//Functions
-
-//open and close lightbox
-function openLightbox() {lightboxContainer.classList.add('active')};
-function closeLightbox () {lightboxContainer.classList.remove('active');}
-
-//cycle through images
-function nextImg() {
-    if (activeImg < lastImage) {
-      setActiveImg(lightboxArray[activeImg +1]);
-    } else {
-      setActiveImg(lightboxArray[0]);
-    }
-  };
-
-function previousImg() {
-    if (activeImg > 0){
-        setActiveImg(lightboxArray[activeImg -1]);
-    } else {
-        setActiveImg(lightboxArray[lastImage]);
-    }
-};
-
-
-
-
-
-/*Updates the active img by updating the src of the mainimg, also this updates 
-the activeImg variable to reflect the index of the img in the lightboxArray vaariable.
-This function will be called when cycling through images using the next and previous buttons*/
-function setActiveImg(image) {
-    lightboxMainImg.src = image.dataset.imgsrc;
-    activeImg = lightboxArray.indexOf(image);
-}
-
-
-//When an image is clicked it will display as the main img
-thumbnailImgs.forEach((image) => {
-    image.addEventListener("click", () => {
-        let newImgSrc = image.dataset.imgsrc;
-        mainImg.setAttribute("src", newImgSrc);
-    });
-});
-
-
-lightboxThumbnailImgs.forEach((image) => {
-    image.addEventListener('click', () => {
-        let newImgSrc = image.dataset.imgsrc;
-        lightboxMainImg.setAttribute('src', newImgSrc);
+thumbnailImgs.forEach(img => {
+    img.addEventListener("click", () =>{
+        let newImgSrc = img.dataset.imgsrc
+        mainImg.src = newImgSrc
     })
-});
+})
 
-//Function for adding items to cart
 
-//Calculate total price for cart
-function totalPriceCalculation () {
-    const quantity = count;
-    const totalCalc = quantity * price;
-    totalPrice.textContent = "$125 x " + quantity + " $" + totalCalc;
-    productName.textContent = "Fall Limited Time Sneakers";
-    deleteIcon.classList.add("active");
-    cartImg.classList.add("active");
-    
 
+mainImg.addEventListener("click", () => {
+    lightboxContainer.classList.add("active")
+    lightboxMainImg.src = mainImg.src
+})
+
+closeBtn.addEventListener("click", () => {
+    lightboxContainer.classList.remove("active")
+})
+
+
+
+lightboxThumbnailImgs.forEach(img => {
+    img.addEventListener("click", () => {setActiveImg(img)})
+})
+
+
+nextBtn.addEventListener("click", () => {
+    if(activeImg < lastImage){
+    setActiveImg(lightboxArray[activeImg + 1])
+    } else{setActiveImg(lightboxArray[0])}
+})
+
+previousBtn.addEventListener("click", () => {
+    if(activeImg > 0){
+        setActiveImg(lightboxArray[activeImg - 1])
+    } else {setActiveImg(lightboxArray[lastImage])}
+})
+
+function setActiveImg(image){
+    lightboxMainImg.src = image.dataset.imgsrc
+    activeImg = lightboxArray.indexOf(image)
 }
 
+let cart = []
+//update the cart 
+addToCartBtn.addEventListener("click", () => {
+    const button = event.target
+    const container = button.closest(".product-info-container")
+    const product = container.querySelector(".name-of-product").textContent
+    const priceText = container.querySelector(".price").textContent
+    const price = parseFloat(priceText.replace('$', ''))
+    let qty = Number(count)
+    const index = cart.findIndex(item => item.product === product)
+    updateCartArray(product, price, qty, index)
+    console.log("add")
+})
 
-//Reset Cart Function
-function resetCart() {
-    totalPrice.textContent = "";
-    productName.textContent = "Cart is empty";
-    cartImg.classList.remove("active");
-    deleteIcon.classList.remove("active");
+function updateCartSummary(product, price, qty, total){
+    const cartSummary = ` <img class="cart-img"  src="assets/image-product-1-thumbnail.jpg">
+    <div class="price-container">
+    <p class="product-name">${product}</p>
+    <p class="total-price">$${price.toFixed(2)} x ${qty} $${total.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
+    
+    </div>
+    <div><img class="delete-icon" src="assets/icon-delete.svg"></div>`
+
+    
+     cartContainer.innerHTML = cartSummary
+}
+
+function updateCartArray(product, price, qty,index){
+    let productQty = 0
+    if(index !== -1){
+        cart[index].qty += qty
+        console.log("a" + cart)
+    } else{ cart.push({product, price, qty})}
+    let total = 0
+    cart.forEach(product => {
+        total += product.price * product.qty
+        console.log("this" + total)
+        productQty = product.qty
+    })
+    
+    updateCartSummary(product,price,productQty,total)
+    count = 1
+    
+}
+
+cartContainer.addEventListener("click", () => {
+    if(event.target.classList.contains("delete-icon")){
+        resetCart()
+    }
+})
+
+function resetCart(){
+   cart = []
+   const emptyCart = `
+        <div class="cart-dropdown-content">
+        <div class="price-container">
+        <p class="product-name">Cart is empty</p>
+        <p class="total-price"></p>
+        </div>`
+   cartContainer.innerHTML = ''
+   cartContainer.innerHTML = emptyCart
 }
