@@ -126,6 +126,9 @@ addToCartBtn.addEventListener("click", () => {
 })
 
 function updateCartSummary(product, price, qty, total){
+
+    
+    
     const cartSummary = ` <img class="cart-img"  src="assets/image-product-1-thumbnail.jpg">
     <div class="price-container">
     <p class="product-name">${product}</p>
@@ -136,9 +139,15 @@ function updateCartSummary(product, price, qty, total){
 
     
      cartContainer.innerHTML = cartSummary
+    
+  
+    
+    
+    console.log(cartContainer)
 }
 
 function updateCartArray(product, price, qty,index){
+    
     let productQty = 0
     if(index !== -1){
         cart[index].qty += qty
@@ -173,3 +182,5 @@ function resetCart(){
    cartContainer.innerHTML = ''
    cartContainer.innerHTML = emptyCart
 }
+
+
