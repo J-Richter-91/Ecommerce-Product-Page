@@ -3,6 +3,7 @@
 //Main page gallery variables
 let mainImg = document.querySelector("#main-img");
 let thumbnailImgs = document.querySelectorAll(".thumbnail-imgs");
+const thumbnailArry = Array.from(thumbnailImgs)
 
 //lightbox variables
 let lightboxContainer = document.querySelector(".lightbox-container");
@@ -38,6 +39,7 @@ const deleteIcon = document.querySelector(".delete-icon");
 //Dropdown variables
 const dropdownContent = document.querySelector(".dropdown-wrapper");
 let dropdownIcons = document.querySelectorAll(".dropdown");
+const cartBtn = document.querySelector(".cart-sum-btn")
 
 //Mobile Dropdown Variables
 const hamburger = document.querySelector(".hamburger");
@@ -50,10 +52,16 @@ hamburger.addEventListener("click", () => {
     mobileDropdown.classList.toggle("active");
 })
 
-dropdownIcons.forEach(icon => {
-    icon.addEventListener("click", () => {
-        dropdownContent.classList.toggle("active")
-    })
+
+let openCart = false;
+cartBtn.addEventListener("click", () => {
+    if(openCart === false){
+        dropdownContent.classList.add("active")
+        openCart = true
+    }else{
+        dropdownContent.classList.remove("active")
+        openCart = false
+    }
 })
 
 add.addEventListener("click", () => {
@@ -71,9 +79,13 @@ minus.addEventListener("click", () => {
 
 thumbnailImgs.forEach(img => {
     img.addEventListener("click", () =>{
+        thumbnailImgs.forEach(img => {
+            img.classList.remove("active")
+        })
+        img.classList.add("active")
         let newImgSrc = img.dataset.imgsrc
         mainImg.src = newImgSrc
-    })
+       })
 })
 
 
@@ -90,25 +102,61 @@ closeBtn.addEventListener("click", () => {
 
 
 lightboxThumbnailImgs.forEach(img => {
-    img.addEventListener("click", () => {setActiveImg(img)})
+    img.addEventListener("click", () => 
+    {lightboxThumbnailImgs.forEach(img => {
+        img.classList.remove("active")
+    })
+    img.classList.add("active")
+    setActiveImg(img)
+}) 
 })
 
 
 nextBtn.addEventListener("click", () => {
     if(activeImg < lastImage){
     setActiveImg(lightboxArray[activeImg + 1])
-    } else{setActiveImg(lightboxArray[0])}
+    lightboxArray[activeImg].classList.add("active");
+    lightboxArray[activeImg - 1].classList.remove("active")
+    } else{
+        setActiveImg(lightboxArray[0])
+        lightboxArray[lastImage].classList.remove("active")
+        lightboxArray[0].classList.add("active")
+    }
 })
 
 previousBtn.addEventListener("click", () => {
     if(activeImg > 0){
         setActiveImg(lightboxArray[activeImg - 1])
-    } else {setActiveImg(lightboxArray[lastImage])}
+        lightboxArray[activeImg].classList.add("active")
+        lightboxArray[activeImg + 1].classList.remove("active")
+    } else {
+        setActiveImg(lightboxArray[lastImage])
+        lightboxArray[0].classList.remove("active")
+        lightboxArray[lastImage].classList.add("active")
+    }
 })
 
 function setActiveImg(image){
     lightboxMainImg.src = image.dataset.imgsrc
     activeImg = lightboxArray.indexOf(image)
+
+    
+
+    if (activeImg < lastImage) {
+        // Remove "active" class from the next thumbnail
+        
+    }
+
+    // Handle the case where activeImg is the last image
+    else if (activeImg === 0) {
+        // Remove "active" class from the first thumbnail
+        lightboxArray[0].classList.add("active");
+        lightboxArray[lastImage].remove("active")
+    }
+}
+
+function toggleActive(){
+
 }
 
 let cart = []
@@ -122,23 +170,22 @@ addToCartBtn.addEventListener("click", () => {
     let qty = Number(count)
     const index = cart.findIndex(item => item.product === product)
     updateCartArray(product, price, qty, index)
+    total.textContent = 1
     console.log("add")
 })
 
-function updateCartSummary(product, price, qty, total){
-
-    
-    
-    const cartSummary = ` <img class="cart-img"  src="assets/image-product-1-thumbnail.jpg">
+function updateCartSummary(total){
+const cartSummary = cart.map(item => 
+    `<img class="cart-img"  src="assets/image-product-1-thumbnail.jpg">
     <div class="price-container">
-    <p class="product-name">${product}</p>
-    <p class="total-price">$${price.toFixed(2)} x ${qty} $${total.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
+    <p class="product-name">${item.product}</p>
+    <p class="total-price">$${item.price.toFixed(2)} x ${item.qty} $${total.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
     
     </div>
     <div><img class="delete-icon" src="assets/icon-delete.svg"></div>`
-
+)
     
-     cartContainer.innerHTML = cartSummary
+    cartContainer.innerHTML = cartSummary
     
   
     
@@ -160,7 +207,7 @@ function updateCartArray(product, price, qty,index){
         productQty = product.qty
     })
     
-    updateCartSummary(product,price,productQty,total)
+    updateCartSummary(total)
     count = 1
     
 }
@@ -182,5 +229,4 @@ function resetCart(){
    cartContainer.innerHTML = ''
    cartContainer.innerHTML = emptyCart
 }
-
 
