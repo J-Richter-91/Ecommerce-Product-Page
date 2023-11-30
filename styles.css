@@ -28,7 +28,8 @@ body{
     justify-content: flex-start;
     align-items: center;
     list-style: none;
-    
+    margin-left: 75px;
+    gap: 15px;
 }
 
   .nav-list > li{
@@ -101,11 +102,11 @@ a{
 .cart-img{
     width: 55px;
     margin-right: 15px;
-    opacity: 0;
+    opacity: 1;
 }
 
 .delete-icon{
-    opacity: 0;
+    opacity: 1;
 }
 
 .cart-img.active, .delete-icon.active{
@@ -175,6 +176,7 @@ hr{
     width: 75px;
     border-radius: 5px;
     margin-left: 8px;
+    
 }
 
 .thumbnail-imgs:hover{
@@ -182,6 +184,14 @@ hr{
     transition: .3s;
     cursor: pointer;
 }
+
+.thumbnail-imgs.active{
+    border: 3px solid orange;
+    opacity: .5;
+    transition: .1s;
+}
+
+
 
 /*Lightbox*/
 
@@ -214,6 +224,12 @@ hr{
     opacity: .5;
     transition: .3s;
     cursor: pointer;
+}
+
+.thumbnail-lightbox-imgs.active{
+    border: 3px solid orange;
+    opacity: .5;
+    transition: .1s;
 }
 /*Lightbox main img wrapper*/
 .lightbox-img-wrapper{
