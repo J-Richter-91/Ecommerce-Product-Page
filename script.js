@@ -212,13 +212,13 @@ function updateCartArray(product, price, qty,index){
     
 }
 
-document.addEventListener("DOMContentLoaded"), () => {
+document.addEventListener("DOMContentLoaded", () => {
     cartContainer.addEventListener("click", () => {
     if(event.target.classList.contains("delete-icon")){
         resetCart()
     }
 })
-}
+})
 
 function resetCart(){
    cart = []
