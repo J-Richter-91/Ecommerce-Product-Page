@@ -32,13 +32,13 @@
                     <li class="nav-links"><a href="#">Contact</a></li>
                     
                 <div class="dropdown-list">
-                    <li class="dropdown"><a href="#"><img src="assets/icon-cart.svg"></a>
+                    <li class="dropdown"><a href="#"><img class="cart-sum-btn" src="assets/icon-cart.svg"></a>
                         <ul  class="dropdown-wrapper">
                             <li>
                                 <div class="cart-dropdown-content">
-                                    <h3>Cart</h3>
+                                    <h3 class="dropdown">Cart</h3>
                                     <div class="cart-info-container">
-                                        <img class="cart-img"  src="assets/image-product-1-thumbnail.jpg">
+                                        
                                         <div class="price-container">
                                         <p class="product-name">Cart is empty</p>
                                         <p class="total-price"></p>
@@ -49,14 +49,15 @@
                                     <div class="checkout-btn-container">
                                     <button class="checkout-btn">Checkout</button>
                                 </div>
+                                </div>
                             </li>
                         </ul>
                     </li>
-                    <li class="dropdown"><a href="#"><img class="avatar" src="assets/image-avatar.png"></a>
-                       
+                    <li class="dropdown"><a href="#"><img class="avatar" alt="avatar" src="assets/image-avatar.png"></a>
+                   
                     </li>
                 </div>
-                </ul>
+                </ul><!--Nav-container end-->
               
                 
             
@@ -68,14 +69,13 @@
                 <div class="gallery-container">
                     <img id="main-img" src="assets/image-product-1.jpg" alt="main-img">
                         <div class="thumbnail-gallery">
-                            <img class="thumbnail-imgs" src="assets/image-product-1-thumbnail.jpg" data-imgsrc="assets/image-product-1.jpg" alt="thumbnail">
+                            <img class="thumbnail-imgs active" src="assets/image-product-1-thumbnail.jpg" data-imgsrc="assets/image-product-1.jpg" alt="thumbnail">
                             <img class="thumbnail-imgs" src="assets/image-product-2-thumbnail.jpg" data-imgsrc="assets/image-product-2.jpg"  alt="thumbnail">
                             <img class="thumbnail-imgs" src="assets/image-product-3-thumbnail.jpg" data-imgsrc="assets/image-product-3.jpg"  alt="thumbnail">
                             <img class="thumbnail-imgs" src="assets/image-product-4-thumbnail.jpg" data-imgsrc="assets/image-product-4.jpg"  alt="thumbnail">
                         </div><!--Thumbnail gallery end-->
                 </div><!--Gallery container end-->
-                
-                <!--Lightbox-->
+
                 <div class="lightbox-container">
                     <div class="lightbox-img-wrapper">
                         <button class="lightbox-btn" id="left">
@@ -89,7 +89,7 @@
                             <img src="assets/icon-close.svg" id="close">
                         
                         <div class="thumbnail-gallery" >
-                            <img class="thumbnail-lightbox-imgs" src="assets/image-product-1-thumbnail.jpg" data-imgsrc="assets/image-product-1.jpg" alt="thumbnail">
+                            <img class="thumbnail-lightbox-imgs active" src="assets/image-product-1-thumbnail.jpg" data-imgsrc="assets/image-product-1.jpg" alt="thumbnail">
                             <img class="thumbnail-lightbox-imgs" src="assets/image-product-2-thumbnail.jpg" data-imgsrc="assets/image-product-2.jpg"  alt="thumbnail">
                             <img class="thumbnail-lightbox-imgs" src="assets/image-product-3-thumbnail.jpg" data-imgsrc="assets/image-product-3.jpg"  alt="thumbnail">
                             <img class="thumbnail-lightbox-imgs" src="assets/image-product-4-thumbnail.jpg" data-imgsrc="assets/image-product-4.jpg"  alt="thumbnail">
@@ -122,7 +122,7 @@
                       </div>
                       
                 </div>
-                
+                <!--Lightbox-->
             </main>
         
 
