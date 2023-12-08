@@ -47,6 +47,7 @@ const mobileDropdown = document.querySelector(".mobile-dropdown");
 //Event Listeners
 
 //Mobile menu dropdown
+let menuOpen = false
 hamburger.addEventListener("click", () => {
     hamburger.classList.toggle("active");
     mobileDropdown.classList.toggle("active");
@@ -139,25 +140,8 @@ previousBtn.addEventListener("click", () => {
 function setActiveImg(image){
     lightboxMainImg.src = image.dataset.imgsrc
     activeImg = lightboxArray.indexOf(image)
-
-    
-
-    if (activeImg < lastImage) {
-        // Remove "active" class from the next thumbnail
-        
-    }
-
-    // Handle the case where activeImg is the last image
-    else if (activeImg === 0) {
-        // Remove "active" class from the first thumbnail
-        lightboxArray[0].classList.add("active");
-        lightboxArray[lastImage].remove("active")
-    }
 }
 
-function toggleActive(){
-
-}
 
 let cart = []
 //update the cart 
@@ -220,6 +204,35 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 })
 
+//mobile image carousel
+let currentIndex = 0;
+const images = document.querySelectorAll('.mobile-img');
+
+function showImage(index){
+    images.forEach((img, i) => {
+        img.classList.remove('active')
+        if(i === index){
+            img.classList.add('active')
+        }
+    })
+}
+
+function changeImage(offset){
+    currentIndex += offset
+    if(currentIndex < 0){
+        currentIndex = images.length - 1
+    }else if(currentIndex === images.length -1){
+        currentIndex = 0
+    }
+    showImage(currentIndex)
+}
+
+
+
+
+document.querySelector('.mobile-prev-btn').addEventListener('click', () => changeImage(-1));
+  document.querySelector('.mobile-next-btn').addEventListener('click', () => changeImage(1));
+
 function resetCart(){
    cart = []
    const emptyCart = `
@@ -231,4 +244,5 @@ function resetCart(){
    cartContainer.innerHTML = ''
    cartContainer.innerHTML = emptyCart
 }
+
 
