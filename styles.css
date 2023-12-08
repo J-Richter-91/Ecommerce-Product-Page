@@ -1,11 +1,16 @@
-body{
+body,html{
     height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
 }
 
 :root{
     --white-faded: rgba(255, 255, 255, .5);
     --transition: all 250ms ease-in-out;
 }
+
+
 
 /*Mobile dropdown*/
 .hamburger{
@@ -46,9 +51,10 @@ a{
     display: flex;
     justify-content:end;
     align-items: center;
-  margin-left: auto;
-  margin-right: 155px;
-  position: relative;
+    margin-left: auto;
+    margin-right: 155px;
+    position: relative;
+    z-index: 1000;
 }
 
 .avatar{
@@ -62,17 +68,19 @@ a{
     border-radius: 5px;
     position: absolute;
     top: 55px;
-    right: -100px;
+    right: -300px;
     width: 280px;
     height: 200px;
     background-color: white;
     box-shadow: 2px 5px 10px rgba(0, 0, 0, .5);
     padding-right: 25px;
     opacity: 0;
+   
 }
 
 .dropdown-wrapper.active{
     opacity: 1;
+    
 }
 
 /*Cart Info*/
@@ -154,13 +162,16 @@ hr{
     margin-top: 105px;
     justify-content: center;
     align-items: center;
+    margin-left: 165px;
+    margin-right: 165px;
     
 }
 
 /*Gallery*/
 .gallery-container{
     width: 550px;
-   
+    display:block;
+    margin-left: 165px;
 }
 
 
@@ -191,6 +202,10 @@ hr{
     transition: .1s;
 }
 
+/*Mobile Gallery*/
+.mobile-gallery-container{
+    display: none;
+}
 
 
 /*Lightbox*/
@@ -208,6 +223,7 @@ hr{
     z-index: 1000; /*will sit on top of everything*/
     opacity: 0;
     pointer-events: none;
+    overflow: scroll;
 }
 
 .lightbox-container.active{
@@ -263,7 +279,7 @@ hr{
 
 #close{
     position: absolute;
-    top: -25px;
+    top: -12px;
     right: -1px;
 }
 
@@ -278,7 +294,7 @@ hr{
 
 /*Product Info Container*/
 .product-info-container{
-    margin-left: 25px;
+    margin-left: 125px;
     width: 550px;
 }
 
@@ -296,11 +312,22 @@ h4{
 
 h2{
     width: 25ch;
-    font-size: 1.8rem;
+    color: #1D2026;
+    font-family: Kumbh Sans;
+    font-size: 44px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 48px; /* 109.091% */
 }
 
 .product-description{
     width: 50ch;
+    color: #69707D;
+    font-family: Kumbh Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px; /* 162.5% */
 }
 /*Cart Items*/
 .cart-items-container{
@@ -398,13 +425,55 @@ h2{
 
 
 
-@media screen and (max-width:768px){
+@media screen and (max-width:720px){
+    div.gallery-container{
+        display: none;
+    }
+
+    .nav-list{
+        margin-left: auto;
+        margin-right: auto;
+        
+    }
+
+    .dropdown-list{
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .main-content-container{
+        margin: 0;
+       
+    }
+
+    .mobile-gallery-container{
+        display: flex;
+        width: 100%;
+        position: relative;
+    }
+
+    .mobile-img{
+        display: none;
+        
+    }
+
+    .mobile-img.active{
+        display: flex;
+        width: 100%;
+        max-height: 250px;
+    }
+
+    .mobile-gallery-container{
+        display: block;
+    }
+  
     .hamburger{
         display: block;
     }
 
     .nav-links{
         display: none;
+       
     }
 
     .hamburger.active .bar:nth-child(2){
@@ -420,16 +489,21 @@ h2{
     }
 
     .mobile-dropdown{
-        position: fixed;
-        left: -100%;
-        top: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100vh;
         flex-direction: column;
         list-style: none;
         background-color: white;
-        height: 30vh;
         width: 25vw;
         border-radius: 5px;
+        margin-top: 75px;
+        z-index: 1000;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);
+        opacity: 0;
     }
+
 
     .mobile-dropdown li {
         margin-bottom: 15px;
@@ -441,10 +515,12 @@ h2{
 
     .mobile-dropdown.active{
         left: 5px;
+        opacity: 1;
     }
 
     .main-content-container{
         flex-direction: column;
+      
     }
 
     .gallery-container{
@@ -452,6 +528,30 @@ h2{
         align-items: center;
         display: flex;
         flex-direction: column;
+        position: relative;
+        
+    }
+
+    .mobile-prev-btn{
+        position: absolute;
+        top: 120px;
+        left: 5px;
+    }
+
+    .mobile-next-btn{
+        position: absolute;
+        bottom: 120px;
+        right: 15px;
+    }
+    
+    .mobile-prev-btn path, .mobile-next-btn path{
+        stroke: white;
+    }
+
+    .mobile-prev-btn:hover path, .mobile-next-btn:hover path {
+        width: 25px;
+        stroke: #FF7E1B;
+        transition: .2s;    
     }
 
     .product-info-container{
@@ -462,8 +562,11 @@ h2{
         text-align: center;
         margin-bottom: 55px;
         margin-top: 25px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
 
 }
+  
   
